@@ -1,0 +1,23 @@
+:root {
+
+  --color-purple: #6a4881;
+  --color-black: #0e0e0e;
+  --color-grey: #707070;
+  --color-pitch--2: #faefeb;
+  --color-pitch--1: #d6a49b;
+
+  --bg-light-1: #ffffff;
+  --bg-light-2: #f1f1f1;
+}
+
+* {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--color-black);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-light-2);
+}
