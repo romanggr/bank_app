@@ -1,13 +1,13 @@
 import styled from "styled-components"
-import Logo from "./Logo";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import HomeLogo from "./HomeLogo";
 
 const StyledFooter = styled.footer`
     background: #000;
     margin-top:4rem;
-    padding:2rem 4rem ;
+    padding:2rem 4rem;
     display:flex;   
     justify-content:space-between;
     align-items: center;
@@ -16,6 +16,7 @@ const StyledFooter = styled.footer`
 & *{
     color:var(--color-light--1);
 }
+
 `
 
 const StyledSocial = styled.div`
@@ -70,7 +71,7 @@ const StyledInst = styled.button`
     }
 `
 
-const StyledLogo = styled.div`
+const StyledLogoContainer = styled.div`
     display:flex;
     flex-direction:column;
     gap:1rem;
@@ -88,10 +89,10 @@ const Footer = () => {
     };
     return (
         <StyledFooter>
-            <StyledLogo>
-                <Logo />
+            <StyledLogoContainer>
+                <HomeLogo />
                 <p>The bank with the fastest account opening, all you need is an Internet connection.</p>
-            </StyledLogo>
+            </StyledLogoContainer>
             <StyledSocial>
                 <StyledInst onClick={() => openExternalLink("https://www.instagram.com/")}>
                     <FaInstagram />

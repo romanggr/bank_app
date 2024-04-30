@@ -3,11 +3,16 @@ import { PiPiggyBank } from "react-icons/pi";
 
 const StyledLogo = styled.div`
             display:flex;
-            gap:1rem;
+            gap:0.5rem;
             align-items:center;
-
-            & h2{
-                font-size:2.5rem;
+            background-color: var(--color-purple--1) !important;
+            border:2px solid var(--color-purple--2);
+            color: white !important;
+            padding:0.5rem !important;
+            & *{
+                font-weight:500;
+                font-size:1.5rem;
+                color: white;
             }
         
 `
@@ -15,7 +20,7 @@ const StyledLogo = styled.div`
 const Logo = () => {
     return (
         <StyledLogo>
-            <PiPiggyBank size={"3rem"} />
+            <PiPiggyBank size={"2.5rem"} />
             <h2>gBank</h2>
         </StyledLogo>
     )

@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import Tariffs from "../ui/Tariffs";
-import Header from "../ui/Header";
 import Footer from "../ui/Footer";
-import GetCart from "../ui/GetCart";
+import GetCart from "./GetCart";
+import HomeHeader from "../ui/HomeHeader";
 
 
 
@@ -47,7 +47,7 @@ const StyledCards = styled.div`
 const Home = () => {
     return (
         <StyledHome>
-            <Header />
+            <HomeHeader />
             <main>
                 <StyledDescription>
                     <StyledCards>

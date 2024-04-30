@@ -1,10 +1,17 @@
 :root {
 
-  --color-purple: #6a4881;
+
+  --color-purple--1: #6a4881;
+  --color-purple--2: #533b66;
   --color-orange: orange;
+  --color-orange--dark: rgb(189, 85, 0);
+  --color-orange--light: rgba(255, 115, 0, 0.201);
   --color-black: #0e0e0e;
-  --color-grey: #707070;
-  --color-peach: #d6a49b;
+  --color-grey: #474747;
+  --color-peach--1: #d6a49b3e;
+  --color-peach--2: #d6a49b;
+
+
 
   --color-light--1: #ffffff;
   --color-light--2: #f1f1f1;

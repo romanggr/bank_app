@@ -4,6 +4,7 @@ import styled from "styled-components"
 const StyledLabel = styled.label`
         color:var(--color-dark--2);
         margin-left:2rem;
+        margin-right:0.5rem;
         font-size:1.3rem;
         font-weight:600;
 `
@@ -20,7 +21,7 @@ const StyledError = styled.div`
     font-size:1rem;
 `
 
-function FormRow({ children, label, error }: { children: ReactNode, label: string, error?: string }) {
+function FormRow({ children, label, error }: { children: ReactNode, label?: string, error?: string }) {
     return (
         <StyledFormRow>
             <StyledLabel htmlFor={label}>{label}</StyledLabel>

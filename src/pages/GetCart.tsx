@@ -2,7 +2,7 @@ import { IoMdDownload } from "react-icons/io";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { CiCreditCard1 } from "react-icons/ci";
 import styled from "styled-components";
-import Heading from "./Heading";
+import Heading from "../ui/Heading";
 import { Link } from "react-router-dom";
 
 const StyledHowGet = styled.div`

@@ -1,38 +1,53 @@
-import styled from "styled-components"
-import Button from "./Button"
-import Logo from "./Logo";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 
-const StyledHeader = styled.header`
-        padding:1rem 5rem ; 
-        border-bottom:1px solid var(--color-light--2);
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        margin-bottom:5rem;
+const StyledHeader = styled.div`
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:1rem !important;
+`;
 
-        & div{
-            display:flex;
-            gap:1rem;
-            align-items:center;
-
-            & h2{
-                font-size:2.5rem;
-            }
-        }
-`
-
-const Header = () => {
-    const navigate = useNavigate();
-    return (
-        <StyledHeader>
-            <Logo />
-            <div>
-                <Button onClick={() => navigate("/login")} variation="purpleBorder">Login</Button>
-                <Button onClick={() => navigate("/registration")} variation="purple">Register</Button>
-            </div>
-        </StyledHeader>
-    )
+interface StyledItemProps {
+    active: string;
 }
 
-export default Header
+const StyledItem = styled.a<StyledItemProps>`
+    border-radius: 3rem;
+    padding: 1rem 3rem;
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--color-light--2);
+    }
+
+    ${(props) => (props.active === "active" && 'font-weight: 600;')}
+`;
+
+const Header: React.FC = () => {
+    const location = useLocation();
+    const isActive = (path: string) => location.pathname === path ? "active" : "";
+
+    return (
+        <StyledHeader>
+            <StyledItem href="/app/dashboard" active={isActive("/app/dashboard")}>
+                Dashboard
+            </StyledItem>
+            <StyledItem href="/app/cards" active={isActive("/app/cards")}>
+                Cards managment
+            </StyledItem>
+            <StyledItem href="/app/contacts" active={isActive("/app/contacts")}>
+                Contacts
+            </StyledItem>
+            <StyledItem href="/app/history" active={isActive("/app/history")}>
+                History
+            </StyledItem>
+            <StyledItem href="/app/settings" active={isActive("/app/settings")}>
+                Settings
+            </StyledItem>
+        </StyledHeader>
+    );
+};
+
+export default Header;

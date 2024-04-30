@@ -16,46 +16,51 @@ const sizes = {
       border-radius: 2rem;
     `,
   large: css`
-      font-size: 1.6rem;
-      padding: 1rem 6rem;
-      font-weight: 600;
+      font-size: 1.4rem;
+      padding: 1rem 2.4rem;
+      font-weight: 400;
       border-radius:4rem;
     `
 };
 
 const variations = {
   purple: css`
-    border: 3px solid var(--color-purple);
-    background-color: var(--color-purple);
+    border: 3px solid var(--color-purple--2);
+    background-color: var(--color-purple--1);
     color:var(--color-light--1);
     &:hover {
       background-color: var(--color-light--1);
-      color: var(--color-purple);
+      color: var(--color-purple--1);
     }
   `,
   purpleBorder: css`
-    border: 3px solid var(--color-purple);
+    border: 3px solid var(--color-purple--2);
     background-color: var(--color-light--1);
-    color:var(--color-purple);
+    color:var(--color-purple--1);
     &:hover {
-      background-color: var(--color-purple);
+      background-color: var(--color-purple--1);
       color: var(--color-light--1);
     }
   `,
+
+
   peach: css`
-  border: 3px solid var(--color-purple);
-  background-color: var(--color-dark--1);
+  background-color: var(--color-orange--light);
+  border:none;
+  color: var(--color-orange--dark);
+
   &:hover {
-    background-color: var(--color-purple);
-    border: 3px solid var(--color-purple);
+    background-color: var(--color-orange);
     color: var(--color-light--1);
   }
 `,
+
+
   grey: css`
-    border: 3px solid #ff5722;
-    background-color: var(--color-dark--1);
+    border:2px solid var(--color-peach--2);
+    background-color: var(--color-peach--1);
     &:hover {
-      background-color: #d66847;
+      background-color: var(--color-light--1);
       color: var(--color-dark--3);
     }
   `,
@@ -67,10 +72,11 @@ interface StyledButtonProps {
 }
 
 interface ButtonProps {
-  children: ReactNode,
-  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  children: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   size?: 'small' | 'medium' | 'large';
   variation?: 'purple' | 'peach' | 'grey' | 'purpleBorder';
+  type?: 'submit' | 'reset' | 'button';
 }
 
 
@@ -83,9 +89,9 @@ const StyledButton = styled.button<StyledButtonProps>`
 `
 
 
-const Button = ({ children, size = "medium", variation = "grey", onClick }: ButtonProps) => {
+const Button = ({ children, size = "medium", variation = "grey", onClick, type }: ButtonProps) => {
   return (
-    <StyledButton onClick={onClick} variation={variation} size={size}>{children}</StyledButton>
+    <StyledButton type={type} onClick={onClick} variation={variation} size={size}>{children}</StyledButton>
   )
 }
 

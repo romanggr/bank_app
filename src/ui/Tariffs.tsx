@@ -52,42 +52,47 @@ const Tariffs = () => {
         <StyledTariffs>
             <Header>Tariffs</Header>
             <table>
-                <StyledTableRow>
-                    <StyledTableHeader></StyledTableHeader>
-                    <StyledTableHeader>gBank</StyledTableHeader>
-                    <StyledTableHeader>Bank1</StyledTableHeader>
-                    <StyledTableHeader>Bank2</StyledTableHeader>
-                </StyledTableRow>
-                <StyledTableRow>
-                    <td>Grace period</td>
-                    <td>Up to 62 days</td>
-                    <td>Up to 55 days</td>
-                    <td>Up to 62 days</td>
-                </StyledTableRow>
-                <StyledTableRow>
-                    <td>Interest rate per month</td>
-                    <td>3,1%</td>
-                    <td>3,5%</td>
-                    <td>3,33%</td>
-                </StyledTableRow>
-                <StyledTableRow>
-                    <td>Cash withdrawal</td>
-                    <td>2%</td>
-                    <td>3%</td>
-                    <td>4%</td>
-                </StyledTableRow>
-                <StyledTableRow>
-                    <td>Replenishment</td>
-                    <td>Free</td>
-                    <td>Free</td>
-                    <td>Free</td>
-                </StyledTableRow>
-                <StyledTableRow>
-                    <td>Cashback</td>
-                    <td>Up to 20% of the total</td>
-                    <td>-</td>
-                    <td>Up to 20% of the total</td>
-                </StyledTableRow>
+                <thead>
+                    <StyledTableRow>
+                        <StyledTableHeader></StyledTableHeader>
+                        <StyledTableHeader>gBank</StyledTableHeader>
+                        <StyledTableHeader>Bank1</StyledTableHeader>
+                        <StyledTableHeader>Bank2</StyledTableHeader>
+                    </StyledTableRow>
+                </thead>
+                <tbody>
+
+                    <StyledTableRow>
+                        <td>Grace period</td>
+                        <td>Up to 62 days</td>
+                        <td>Up to 55 days</td>
+                        <td>Up to 62 days</td>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                        <td>Interest rate per month</td>
+                        <td>3,1%</td>
+                        <td>3,5%</td>
+                        <td>3,33%</td>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                        <td>Cash withdrawal</td>
+                        <td>2%</td>
+                        <td>3%</td>
+                        <td>4%</td>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                        <td>Replenishment</td>
+                        <td>Free</td>
+                        <td>Free</td>
+                        <td>Free</td>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                        <td>Cashback</td>
+                        <td>Up to 20% of the total</td>
+                        <td>-</td>
+                        <td>Up to 20% of the total</td>
+                    </StyledTableRow>
+                </tbody>
             </table>
         </StyledTariffs>
     )

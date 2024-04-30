@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import Logo from "../ui/Logo";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import FormRow from "../ui/FormRow";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
+import HomeLogo from "../ui/HomeLogo";
+import { useSingUp } from "../features/auth/useSingUp";
 
 
 
@@ -38,7 +39,6 @@ const StyledInput = styled.input`
     border-radius:2rem;
     width:100%;
     border:2px solid var(--color-black);
-    color:var(--color-dark--3);
     background-color:var(--color-light--1);
     font-size:1rem;
     padding:0.5rem 1rem; 
@@ -46,16 +46,10 @@ const StyledInput = styled.input`
         color:var(--color-black);
     }   
     &:focus{
-        border:2px solid var(--color-peach);
+        border:2px solid var(--color-peach--1);
     }
-    
+`
 
-`
-const StyledInputImage = styled.input`
-    width:80%;
-    padding:0.5rem 1rem; 
-    border-radius:2rem;
-`
 const StyledBtnContainer = styled.div`
     & div{
         margin-top:2rem;
@@ -73,39 +67,46 @@ const StyledBtnContainer = styled.div`
 
 
 const Registration = () => {
-    const { handleSubmit, register, formState, getValues } = useForm();
+    const { singUp } = useSingUp();
+    const { handleSubmit, register, formState, getValues, reset } = useForm();
     const { errors } = formState;
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data);
+        const { email, password, name, surname, phone, adress } = data;
+        singUp({ email, password, name, surname, phone, adress }, {
+            onSuccess: () => {
+                reset()
+            }
+        })
+
     };
 
 
 
     return (
         <StyledRegistration>
-            <Logo />
+            <HomeLogo />
             <p>Personal data</p>
             <form onSubmit={handleSubmit(onSubmit)}>
 
-                <FormRow label="Full name" error={typeof errors.fullName?.message === 'string'
-                    ? errors.fullName?.message : undefined}>
+                <FormRow label="Name" error={typeof errors.name?.message === 'string'
+                    ? errors.name?.message : undefined}>
                     <StyledInput required placeholder="Type here..."
-                        id="Full name" type="text"
-                        {...register("fullName", { required: "Full name is required" })} />
+                        id="Name" type="text"
+                        {...register("name", { required: "Name is required" })} />
+                </FormRow>
+
+                <FormRow label="Surname" error={typeof errors.surname?.message === 'string'
+                    ? errors.surname?.message : undefined}>
+                    <StyledInput required placeholder="Type here..."
+                        id="Surname" type="text"
+                        {...register("surname", { required: "Surname is required" })} />
                 </FormRow>
 
                 <FormRow label="Adress" error={typeof errors.adress?.message === 'string'
                     ? errors.adress?.message : undefined}>
                     <StyledInput required placeholder="Type here..."
                         id="Adress" type="text" {...register("adress", { required: "Adress is required" })} />
-                </FormRow>
-
-                <FormRow label="Your photo" error={typeof errors.photo?.message === 'string'
-                    ? errors.photo?.message : undefined}>
-                    <StyledInputImage required
-                        id="Your photo" type="file"
-                        {...register("photo", { required: "Photo is required" })} />
                 </FormRow>
 
                 <p>Contact details</p>
@@ -119,7 +120,7 @@ const Registration = () => {
 
                 <FormRow label="Email" error={typeof errors.email?.message === 'string'
                     ? errors.email?.message : undefined}>
-                    <StyledInput required type="text" id="Email" placeholder="Type here..."
+                    <StyledInput required type="email" id="Email" placeholder="Type here..."
                         {...register("email", {
                             required: "This field is required",
                             pattern: {

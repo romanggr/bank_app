@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import FormRow from "../ui/FormRow";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import Logo from "../ui/Logo";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
+import { useLogin } from "../features/auth/useLogin";
+import HomeLogo from "../ui/HomeLogo";
 
 const StyledLogin = styled.div`
   padding:2rem;
@@ -36,7 +37,6 @@ const StyledInput = styled.input`
     border-radius:2rem;
     width:100%;
     border:2px solid var(--color-black);
-    color:var(--color-dark--3);
     background-color:var(--color-light--1);
     font-size:1rem;
     padding:0.5rem 1rem; 
@@ -44,7 +44,7 @@ const StyledInput = styled.input`
         color:var(--color-black);
     }   
     &:focus{
-        border:2px solid var(--color-peach);
+        border:2px solid var(--color-peach--1);
     }
 `
 
@@ -64,16 +64,19 @@ const StyledBtnContainer = styled.div`
 `
 
 const Login = () => {
+    const { login, isPending } = useLogin()
+
     const { handleSubmit, register, formState } = useForm();
     const { errors } = formState;
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data);
+        const { email, password } = data;
+        login({ email, password })
     };
 
     return (
         <StyledLogin>
-            <Logo />
+            <HomeLogo />
             <p>Login</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormRow label="Email" error={typeof errors.email?.message === 'string'
@@ -93,7 +96,7 @@ const Login = () => {
                 <StyledBtnContainer>
                     <div>
                         <Button size="large" variation="peach">Submit</Button>
-                        <Link to={"/login"}>Don't you have an account yet?</Link>
+                        <Link to={"/register"}>Don't you have an account yet?</Link>
                     </div>
                 </StyledBtnContainer>
             </form>
