@@ -12,30 +12,29 @@ import Cards from "./pages/Cards"
 import Contacts from "./features/settings/Contacts"
 import Settings from "./pages/Settings"
 import PageNotFound from "./ui/PageNotFound"
-// import { CardContextProvider } from "./context/CardContext"
-
 
 
 const App = () => {
   const queryClient = new QueryClient();
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Registration />} />
+            <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/app" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-              <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="history" element={<History />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="contacts" element={<Contacts />} />
-              <Route path="cards" element={<Cards />} />
-              <Route path="card:id" element={<Cards />} />
+            {/*<Route path="/app" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>*/}
+            {/*  <Route index element={<Navigate replace to="dashboard" />} />*/}
+            {/*  <Route path="dashboard" element={<Dashboard />} />*/}
+            {/*  <Route path="history" element={<History />} />*/}
+            {/*  <Route path="settings" element={<Settings />} />*/}
+            {/*  <Route path="contacts" element={<Contacts />} />*/}
+            {/*  <Route path="cards" element={<Cards />} />*/}
+            {/*  <Route path="card:id" element={<Cards />} />*/}
 
-            </Route>
+            {/*</Route>*/}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

@@ -3,7 +3,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import FormRow from "../ui/FormRow";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
-import HomeLogo from "../ui/HomeLogo";
+
 import { useSingUp } from "../features/auth/useSingUp";
 
 
@@ -85,7 +85,6 @@ const Registration = () => {
 
     return (
         <StyledRegistration>
-            <HomeLogo />
             <p>Personal data</p>
             <form onSubmit={handleSubmit(onSubmit)}>
 

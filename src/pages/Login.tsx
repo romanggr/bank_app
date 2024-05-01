@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 import { useLogin } from "../features/auth/useLogin";
-import HomeLogo from "../ui/HomeLogo";
+
 
 const StyledLogin = styled.div`
   padding:2rem;
@@ -76,7 +76,7 @@ const Login = () => {
 
     return (
         <StyledLogin>
-            <HomeLogo />
+
             <p>Login</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormRow label="Email" error={typeof errors.email?.message === 'string'

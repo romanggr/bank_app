@@ -1,27 +1,92 @@
-import styled from "styled-components"
-import { PiPiggyBank } from "react-icons/pi";
+import styled, {css} from "styled-components"
+import {PiPiggyBank} from "react-icons/pi";
 
-const StyledLogo = styled.div`
-            display:flex;
-            gap:0.5rem;
-            align-items:center;
-            background-color: var(--color-purple--1) !important;
-            border:2px solid var(--color-purple--2);
-            color: white !important;
-            padding:0.5rem !important;
-            & *{
-                font-weight:500;
-                font-size:1.5rem;
-                color: white;
-            }
-        
+interface LogoSize {
+    size?: "big" | "small"
+}
+
+const StyledLogo = styled.div<LogoSize>`
+  display: flex;
+  align-items: center;
+  background-color: var(--color-purple-light);
+  border-radius: 3rem;
+  
+  ${props=>props.size === "big" && css`
+    gap: 0.5rem;
+    padding: 0.5rem 2rem;
+
+    & > h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: var(--color-white-light);
+    }
+
+    & > svg {
+      font-size: 3rem;
+      fill: var(--color-white-light);
+    }
+    
+    @media(max-width: 1000px){
+      padding: 0.5rem 1rem;
+
+      & > h2 {
+        font-size: 1rem;
+      }
+
+      & > svg {
+        font-size: 2rem;
+      }
+    }
+
+    @media(max-width: 768px) {
+      padding: 0.5rem 1rem;
+
+      & > h2 {
+        font-size: 1rem;
+      }
+
+      & > svg {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media(max-width: 560px) {
+      padding: 0.5rem;
+      
+      & > h2 {
+        font-size: 0.8rem;
+      }
+
+      & > svg {
+        font-size: 1.4rem;
+      }
+    }
+  `}
+
+  
+  ${props=>props.size === "small" && css`
+    gap: 0.5rem;
+    padding: 0.5rem 2rem;
+
+    & > h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: var(--color-white-light);
+    }
+
+    & > svg {
+      font-size: 3.5rem;
+      fill: var(--color-white-light);
+    }
+  `}
+
 `
 
-const Logo = () => {
+const Logo = ({size = "small"}: LogoSize) => {
     return (
-        <StyledLogo>
-            <PiPiggyBank size={"2.5rem"} />
-            <h2>gBank</h2>
+        <StyledLogo size={size}>
+            <PiPiggyBank/>
+            <h2>Banker</h2>
         </StyledLogo>
     )
 }
