@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import FormRow from "../../ui/FormRow"
+import AuthFormRow from "../auth/AuthFormRow.tsx"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import Button from "../../ui/Button"
 import { cardStringToNum, generateNumber, numberForCard } from "../../helpers/helpers"
@@ -105,23 +105,23 @@ const ModalAddCard = () => {
     return (
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <h2>Create card</h2>
-            <FormRow label="Name on card" error={typeof errors.fullName?.message === 'string'
+            <AuthFormRow label="Name on card" error={typeof errors.fullName?.message === 'string'
                 ? errors.fullName?.message : undefined}>
                 <input type="text" required {...register("fullName", { required: "Name is required" })} />
-            </FormRow>
-            <FormRow label="Card number" error={typeof errors.numberForm?.message === 'string'
+            </AuthFormRow>
+            <AuthFormRow label="Card number" error={typeof errors.numberForm?.message === 'string'
                 ? errors.numberForm?.message : undefined}>
                 <input type="text" readOnly {...register("numberForm")} />
-            </FormRow>
-            <FormRow label="Pin code" error={typeof errors.pin?.message === 'string'
+            </AuthFormRow>
+            <AuthFormRow label="Pin code" error={typeof errors.pin?.message === 'string'
                 ? errors.pin?.message : undefined}>
                 <input type="password" required
                     {...register("pin", {
                         required: "Pin is required",
                         validate: (value) => value.length === 4 || "Pin length must be equal 4"
                     })} />
-            </FormRow>
-            <FormRow label="Card style">
+            </AuthFormRow>
+            <AuthFormRow label="Card style">
 
                 <StyledStyleContainer>
                     <input id="black" type="checkbox" checked={"black" === style} value={"black"} onChange={(e) => setStyle(e.target.value)} />
@@ -134,7 +134,7 @@ const ModalAddCard = () => {
 
 
 
-            </FormRow>
+            </AuthFormRow>
             <BtnContainer>
                 <Button>Reset</Button>
                 <Button variation="purpleBorder">Create</Button>

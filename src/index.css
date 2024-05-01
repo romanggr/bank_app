@@ -5,7 +5,7 @@
   --color-purple-dark: #473256;
   --color-orange-font: #e25734;
   --color-orange-light: #ffc6b2;
-  --color-white-light: #e9ebe1;
+  --color-white-light: #f7f8f2;
   --color-white-dark: #CBC6BE;
   --color-light-font: #8E8F87;
   --color-dark-font: #373737;
@@ -20,5 +20,5 @@
 }
 
 body {
-  background-color: var(--color-white-dark);
+  background-color: var(--color-white-light);
 }

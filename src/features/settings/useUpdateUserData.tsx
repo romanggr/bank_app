@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { updateUserDataApi } from "../../services/apiAuth"
-import { IUpdateData } from "../../helpers/types"
+import { IUpdateData } from "../../helpers/types.ts"
 import toast from "react-hot-toast"
 
 

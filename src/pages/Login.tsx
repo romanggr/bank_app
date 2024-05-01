@@ -1,106 +1,92 @@
 import styled from "styled-components";
-import FormRow from "../ui/FormRow";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import Button from "../ui/Button";
-import { Link } from "react-router-dom";
-import { useLogin } from "../features/auth/useLogin";
+import Header from "../features/home/Header.tsx";
+import AuthFormRow from "../features/auth/AuthFormRow.tsx";
+import {useState} from "react";
+import {IAuth} from "../helpers/types.ts";
 
 
-const StyledLogin = styled.div`
-  padding:2rem;
-  background-color: var(--color-light--2);
-  width: 70%;
-  
-  border-radius: 1rem;
-  margin: 5% auto;
+const Container = styled.div`
+  height: 100%;
+  width: 50rem;
+  margin: 7rem auto;
+  padding-left: 12rem;
 
-  & p{
-    text-align:center;
-    font-size:1.8rem;
-    font-weight:600;
-    color:var(--color-black);
-    margin-top:1rem;
-}
- 
-
-  & form{
-        margin-top:2rem;
-        display:flex;
-        flex-direction:column;
-        gap:1rem;
+  & > h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
   }
- 
+
 `;
 
-const StyledInput = styled.input`
-    outline:none;
-    border-radius:2rem;
-    width:100%;
-    border:2px solid var(--color-black);
-    background-color:var(--color-light--1);
-    font-size:1rem;
-    padding:0.5rem 1rem; 
-    &::placeholder{
-        color:var(--color-black);
-    }   
-    &:focus{
-        border:2px solid var(--color-peach--1);
-    }
+const Form = styled.form`
+  //border: 4px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+
 `
 
-const StyledBtnContainer = styled.div`
-    & div{
-        margin-top:2rem;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        & a{
-            padding-top:0.5rem;
-            &:hover{
-                color:var(--color-orange);
-            }
-        }
-    }
+const Input = styled.input`
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid var(--color-dark-font);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-bottom: 0.2rem;
+  outline: none;
 `
+
+
+const Btn = styled.button`
+  background: black;
+  color: var(--color-white-light);
+  border: none;
+  font-size: 1.4rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+`
+
 
 const Login = () => {
-    const { login, isPending } = useLogin()
+    const [email, setEmail] = useState<IAuth>({
+        data: "",
+        error: ""
 
-    const { handleSubmit, register, formState } = useForm();
-    const { errors } = formState;
+    })
+    const [password, setPassword] = useState<IAuth>({
+        data: "",
+        error: ""
+    })
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        const { email, password } = data;
-        login({ email, password })
-    };
 
     return (
-        <StyledLogin>
+        <>
+            <Header/>
+            <Container>
+                <h2>Login</h2>
+                <Form>
+                    <AuthFormRow label={"Email"} error={email.error}>
+                        <Input
+                            type={"text"}
+                            value={email.data}
+                            onChange={(e) =>
+                                setEmail(prev => ({...prev, data: e.target.value}))}/>
+                    </AuthFormRow>
+                    <AuthFormRow label={"Password"} error={password.error}>
+                        <Input
+                            type={"password"}
+                            value={password.data}
+                            onChange={(e) =>
+                                setPassword(prev => ({...prev, data: e.target.value}))}/>
+                    </AuthFormRow>
+                    <AuthFormRow>
+                        <Btn>Continue</Btn>
+                    </AuthFormRow>
 
-            <p>Login</p>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <FormRow label="Email" error={typeof errors.email?.message === 'string'
-                    ? errors.email?.message : undefined}>
-                    <StyledInput required type="text" id="Email" placeholder="Type here..."
-                        {...register("email", {
-                            required: "This field is required",
-                        })} />
-                </FormRow>
-                <FormRow label="Password" error={typeof errors.password?.message === 'string'
-                    ? errors.password?.message : undefined}>
-                    <StyledInput required type="password" id="Password" placeholder="Type here..."
-                        {...register("password", {
-                            required: "This field is required"
-                        })} />
-                </FormRow>
-                <StyledBtnContainer>
-                    <div>
-                        <Button size="large" variation="peach">Submit</Button>
-                        <Link to={"/register"}>Don't you have an account yet?</Link>
-                    </div>
-                </StyledBtnContainer>
-            </form>
-        </StyledLogin >
+                </Form>
+            </Container>
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
-import FormRow from "../../ui/FormRow"
+import AuthFormRow from "../auth/AuthFormRow.tsx"
 import { useUser } from "../auth/useUser";
 import Empty from "../../ui/Empty";
 import { useState } from "react";
@@ -65,7 +65,7 @@ const UpdateUserData = () => {
         <div>
             <h2>Update user data</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormRow label="Email" error={typeof errors.email?.message === 'string'
+                <AuthFormRow label="Email" error={typeof errors.email?.message === 'string'
                     ? errors.email?.message : undefined}>
                     <StyledInput type="text" readOnly {...register("email", {
                         required: "This field is required",
@@ -74,23 +74,23 @@ const UpdateUserData = () => {
                             message: "Please provide a valid email address",
                         },
                     })} />
-                </FormRow>
-                <FormRow label="Full name" error={typeof errors.fullName?.message === 'string'
+                </AuthFormRow>
+                <AuthFormRow label="Full name" error={typeof errors.fullName?.message === 'string'
                     ? errors.fullName?.message : undefined}>
                     <StyledInput type="text" id="Full name" {...register("fullName", { required: "Full name is required" })} />
-                </FormRow>
-                <FormRow label="Phone" error={typeof errors.phone?.message === 'string'
+                </AuthFormRow>
+                <AuthFormRow label="Phone" error={typeof errors.phone?.message === 'string'
                     ? errors.phone?.message : undefined}>
                     <StyledInput type="text" id="Phone"  {...register("phone", { required: "Phone is required" })} />
-                </FormRow>
-                <FormRow label="Adress" error={typeof errors.adress?.message === 'string'
+                </AuthFormRow>
+                <AuthFormRow label="Adress" error={typeof errors.adress?.message === 'string'
                     ? errors.adress?.message : undefined}>
                     <StyledInput type="text" id="Adress" {...register("adress", { required: "Adress is required" })} />
-                </FormRow>
-                <FormRow label="Avatar">
+                </AuthFormRow>
+                <AuthFormRow label="Avatar">
                     <StyledInputImage type="file" accept="image/*"
                         onChange={(e) => setAvatar(e.target.files ? e.target.files[0] : null)} />
-                </FormRow>
+                </AuthFormRow>
                 <StyledBtnContainer>
                     <Button type="button" onClick={() => handleReset()} variation="peach">Reset</Button>
                     <Button variation="purpleBorder">Update data</Button>

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { createCardApi } from "../../services/cardsApi";
-import { ICardForm } from "../../helpers/types";
+import { ICardForm } from "../../helpers/types.ts";
 import toast from "react-hot-toast";
 
 export const useCreateCard = () => {

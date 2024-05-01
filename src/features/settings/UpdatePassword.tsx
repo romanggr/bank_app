@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FormRow from "../../ui/FormRow";
+import AuthFormRow from "../auth/AuthFormRow.tsx";
 import styled from "styled-components";
 import Button from "../../ui/Button";
 import { useUpdateUserPassword } from "./useUpdateUserPassword";
@@ -62,7 +62,7 @@ const UpdatePassword = () => {
         <div>
             <h2>Update password</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <FormRow label="Password" error={error}>
+                <AuthFormRow label="Password" error={error}>
                     <StyledInput
                         required
                         type="password"
@@ -71,8 +71,8 @@ const UpdatePassword = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                </FormRow>
-                <FormRow label="Confirm Password">
+                </AuthFormRow>
+                <AuthFormRow label="Confirm Password">
                     <StyledInput
                         required
                         type="password"
@@ -81,7 +81,7 @@ const UpdatePassword = () => {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
-                </FormRow>
+                </AuthFormRow>
                 <StyledBtnContainer>
                     <Button type="button" onClick={() => handleReset()} variation="peach">
                         Reset

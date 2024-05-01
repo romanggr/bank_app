@@ -7,7 +7,6 @@ import About from "../features/home/About.tsx";
 
 
 const Main = styled.main`
-  background: var(--color-white-light);
   padding: 2rem 6rem;
   
   @media(max-width: 1000px){

@@ -43,3 +43,8 @@ export interface ICard {
     history: number[];
 
 }
+
+export interface IAuth{
+    data:string,
+    error:string
+}
