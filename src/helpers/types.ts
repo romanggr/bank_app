@@ -20,7 +20,7 @@ export interface IRegisterData {
     surname: string;
     phone: string;
     avatar?: any;
-    adress: string;
+    address: string;
 }
 
 export interface ICardForm {
@@ -46,5 +46,15 @@ export interface ICard {
 
 export interface IAuth{
     data:string,
+    error:string
+}
+
+export interface IAuthDateOfBirth{
+    data:Date,
+    error:string
+}
+
+export interface IAuthPhoto{
+    data:any,
     error:string
 }
