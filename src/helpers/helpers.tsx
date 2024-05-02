@@ -20,7 +20,7 @@ export function numberForCard(number: number) {
 }
 
 export function cardStringToNum(string: string) {
-    let res: string[] = [];
+    const res: string[] = [];
     for (let i = 0; i < string.length; i++) {
         if (string[i] !== " ") {
             res.push(string[i])
@@ -31,27 +31,24 @@ export function cardStringToNum(string: string) {
 }
 
 export function generateCvv() {
-    let cvv: number = Math.round(Math.random() * 1000)
-    return cvv
+    return Math.round(Math.random() * 1000)
 }
 
 export function generateNumber() {
-    let number: number = Math.round(Math.random() * 1000000000000)
-    let string: string = "5025" + number
+    const number: number = Math.round(Math.random() * 1000000000000)
+    const string: string = "5025" + number
     return Number(string)
 }
 
 export function generateDate() {
     const currentDate = new Date();
     const futureDate = new Date(currentDate.getFullYear() + 4, currentDate.getMonth());
-    const formattedDate = `${(futureDate.getMonth() + 1).toString().padStart(2, '0')}/${futureDate.getFullYear()}`;
-
-    return formattedDate;
+    return `${(futureDate.getMonth() + 1).toString().padStart(2, '0')}/${futureDate.getFullYear()}`;
 }
 
 export const copyToClipboard = (text: string, alertText: string) => {
     toast.success(alertText)
-    let textField = document.createElement('textarea')
+    const textField = document.createElement('textarea')
     textField.innerText = text
     document.body.appendChild(textField)
     textField.select()
@@ -64,10 +61,16 @@ export function formatBalance(balance: number) {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
     });
-    const formattedBalance = formatter.format(balance);
-    return formattedBalance;
+    return formatter.format(balance);
 }
 
+export function formatDateOfBirth(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+
+    return `${day}.${month}.${year}`;
+}
 
 
 

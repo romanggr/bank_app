@@ -7,19 +7,25 @@ import {IAuth} from "../helpers/types.ts";
 
 const Container = styled.div`
   height: 100%;
-  width: 50rem;
+  width: 30rem;
   margin: 7rem auto;
-  padding-left: 12rem;
 
   & > h2 {
     font-size: 2.4rem;
     margin-bottom: 2rem;
   }
+  
+  @media(max-width: 768px){
+    width: 80vw;
+
+    & > h2 {
+      font-size: 2rem;
+    }
+  }
 
 `;
 
 const Form = styled.form`
-  //border: 4px solid black;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -35,22 +41,32 @@ const Input = styled.input`
   font-weight: 500;
   padding-bottom: 0.2rem;
   outline: none;
+  width: 100%;
 `
 
 
 const Btn = styled.button`
   background: black;
+  border: 3px solid black;
   color: var(--color-white-light);
-  border: none;
   font-size: 1.4rem;
+  font-weight: 500;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+  
+  &:hover{
+    background: transparent;
+    color: black;
+  }
 `
 
 
 const Login = () => {
     const [email, setEmail] = useState<IAuth>({
         data: "",
+        // error: "Provide a valid email"
         error: ""
 
     })
@@ -66,7 +82,7 @@ const Login = () => {
             <Container>
                 <h2>Login</h2>
                 <Form>
-                    <AuthFormRow label={"Email"} error={email.error}>
+                    <AuthFormRow  label={"Email"} error={email.error}>
                         <Input
                             type={"text"}
                             value={email.data}
@@ -81,7 +97,7 @@ const Login = () => {
                                 setPassword(prev => ({...prev, data: e.target.value}))}/>
                     </AuthFormRow>
                     <AuthFormRow>
-                        <Btn>Continue</Btn>
+                        <Btn type={"button"}>Continue</Btn>
                     </AuthFormRow>
 
                 </Form>

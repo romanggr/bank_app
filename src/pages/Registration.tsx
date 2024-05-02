@@ -1,82 +1,228 @@
 import styled from "styled-components";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Header from "../features/home/Header.tsx";
 import AuthFormRow from "../features/auth/AuthFormRow.tsx";
-import Button from "../ui/Button";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {IAuth, IAuthDateOfBirth, IAuthPhoto} from "../helpers/types.ts";
+import Input from "../features/auth/Input.tsx";
+import FileInput from "../features/auth/FileInput.tsx";
 
-import { useSingUp } from "../features/auth/useSingUp";
+const Container = styled.div`
+  height: 100%;
+  width: 30rem;
+  margin: 3rem auto;
 
-
-
-const StyledRegistration = styled.div`
-  padding:2rem;
-  background-color: var(--color-light--2);
-  width: 70%;
-  
-  border-radius: 1rem;
-  margin: 5% auto;
-
-  & p{
-    text-align:center;
-    font-size:1.8rem;
-    font-weight:600;
-    color:var(--color-black);
-    margin-top:1rem;
-}
- 
-
-  & form{
-        margin-top:2rem;
-        display:flex;
-        flex-direction:column;
-        gap:1rem;
+  & > h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
   }
- 
+
+  @media (max-width: 768px) {
+    width: 80vw;
+    margin: 4rem auto 3rem;
+
+    & > h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
 `;
 
-const StyledInput = styled.input`
-    outline:none;
-    border-radius:2rem;
-    width:100%;
-    border:2px solid var(--color-black);
-    background-color:var(--color-light--1);
-    font-size:1rem;
-    padding:0.5rem 1rem; 
-    &::placeholder{
-        color:var(--color-black);
-    }   
-    &:focus{
-        border:2px solid var(--color-peach--1);
-    }
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+
 `
 
-const StyledBtnContainer = styled.div`
-    & div{
-        margin-top:2rem;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        & a{
-            padding-top:0.5rem;
-            &:hover{
-                color:var(--color-orange);
-            }
-        }
-    }
+
+const Btn = styled.button`
+  background: black;
+  border: 3px solid black;
+  color: var(--color-white-light);
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: transparent;
+    color: black;
+  }
 `
+
 
 
 const Registration = () => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    const [email, setEmail] = useState<IAuth>({
+        data: "",
+        error: ""
+
+    })
+    const [phone, setPhone] = useState<IAuth>({
+        data: "+",
+        error: ""
+
+    })
+    const [name, setName] = useState<IAuth>({
+        data: "",
+        error: ""
+
+    })
+    const [surname, setSurname] = useState<IAuth>({
+        data: "",
+        error: ""
+
+    })
+    const [nationality, setNationality] = useState<IAuth>({
+        data: "",
+        error: ""
+
+    })
+    const [photo, setPhoto] = useState<IAuthPhoto>({
+        data: "",
+        error: ""
+
+    })
+    const [dateOfBirth, setDateOfBirth] = useState<IAuthDateOfBirth>({
+        data: new Date(),
+        error: ""
+    })
+    const [password, setPassword] = useState<IAuth>({
+        data: "",
+        error: ""
+    })
+    const [passwordConfirmation, setPasswordConfirmation] = useState<IAuth>({
+        data: "",
+        error: ""
+    })
+
+
+    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const enteredDate = e.target.value;
+        const enteredYear = enteredDate.split("-")[0];
+
+        // Check if the entered year has more than 4 characters
+        if (enteredYear.length > 4) {
+            setDateOfBirth((prev) =>
+                ({...prev, error: "Year should not exceed 4 characters"}))
+            return;
+        }
+        setDateOfBirth((prev) => ({...prev, data: new Date(enteredDate)}));
+    };
 
 
     return (
-        <StyledRegistration>
-            <p>Personal data</p>
+        <>
+            <Header/>
+            <Container>
+                <h2>{!isOpen ? "Registration" : "Personal data"}</h2>
+                <Form>
+                    {!isOpen ? (
+                        <>
+                            <AuthFormRow label={"Email"} error={email.error}>
+                                <Input
+                                    type={"text"}
+                                    value={email.data}
+                                    onChange={(e) =>
+                                        setEmail((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Phone with country code"} error={phone.error}>
+                                <Input
+                                    type={"text"}
+                                    value={phone.data}
+                                    onChange={(e) =>
+                                        setPhone((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Password"} error={password.error}>
+                                <Input
+                                    type={"password"}
+                                    value={password.data}
+                                    onChange={(e) =>
+                                        setPassword((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Password Confirmation"} error={passwordConfirmation.error}>
+                                <Input
+                                    type={"password"}
+                                    value={passwordConfirmation.data}
+                                    onChange={(e) =>
+                                        setPasswordConfirmation((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow>
+                                <Btn type={"button"} onClick={() => setIsOpen(true)}>Continue</Btn>
+                            </AuthFormRow>
+                        </>
+                    ) : (
+                        <>
+                            <AuthFormRow label={"Name"} error={name.error}>
+                                <Input
+                                    type={"text"}
+                                    value={name.data}
+                                    onChange={(e) =>
+                                        setName((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Surname"} error={surname.error}>
+                                <Input
+                                    type={"text"}
+                                    value={surname.data}
+                                    onChange={(e) =>
+                                        setSurname((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Nationality"} error={nationality.error}>
+                                <Input
+                                    type={"text"}
+                                    value={nationality.data}
+                                    onChange={(e) =>
+                                        setNationality((prev) => ({...prev, data: e.target.value}))
+                                    }
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Date of birth"} error={dateOfBirth.error}>
+                                <Input
+                                    type={"date"}
+                                    value={dateOfBirth.data.toISOString().slice(0, 10)}
+                                    onChange={(e) => handleDateChange(e)}
+                                />
+                            </AuthFormRow>
+                            <AuthFormRow label={"Your photo"} error={photo.error}>
+                                <FileInput
+                                    value={photo.data}
+                                    onChange={(e) =>
+                                        // setPhoto((prev) =>
+                                        //     ({...prev, data: e.target.files && e.target.files[0]}))
+                                console.log(e.target.files)
+                                }/>
 
+                            </AuthFormRow>
+                            <AuthFormRow>
+                                <Btn type={"button"} onClick={() =>
+                                    setIsOpen(true)}>Register</Btn>
+                            </AuthFormRow>
+                        </>
+                    )}
 
-        </StyledRegistration>
+                </Form>
+            </Container>
+        </>
     );
 };
+
 
 export default Registration;
