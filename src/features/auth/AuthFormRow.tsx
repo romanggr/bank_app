@@ -8,7 +8,7 @@ const StyledFormRow = styled.div<{ iserror: string }>`
 
 
   ${(props) => props.iserror === "true" && css`
-    grid-template-columns:1fr auto;
+    grid-template-columns:1fr 15rem;
 
     @media (max-width: 560px) {
       grid-template-columns:1fr 0.3fr;

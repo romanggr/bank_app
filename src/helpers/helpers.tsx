@@ -64,12 +64,21 @@ export function formatBalance(balance: number) {
     return formatter.format(balance);
 }
 
-export function validateEmail(email:string) {
+export function validateEmail(email: string) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     return emailRegex.test(email);
 }
 
+export function validatePassword(password: string) {
+    const hasNumber = /\d/;
+    const hasLetter = /[a-zA-Z]/;
+    const minLength = 8;
+
+    return hasNumber.test(password) &&
+        hasLetter.test(password) &&
+        password.length >= minLength;
+}
 
 
 
