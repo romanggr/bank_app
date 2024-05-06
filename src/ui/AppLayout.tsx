@@ -1,27 +1,23 @@
 import styled from "styled-components"
-import StyledHello from "./StyledHello";
+import StyledHello from "../features/dashboard/StyledHello.tsx";
 import Logo from "./Logo";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 
 const StyledAppLayout = styled.div`
-    background-color:var(--color-light--2);
-    height:100vh;
-    display:grid;   
-    grid-template-columns:1fr 2fr 5fr 2fr; 
-    grid-template-rows:3.5rem 2fr 1fr 5fr;
-    gap:1rem;
-    padding:0.5rem;
+  background-color: var(--color-white-dark);
+  height: 100vh;
+  display: grid;
+  grid-template-columns:9rem 18rem 1fr 30rem;
+  grid-template-rows:3.5rem 13rem 10rem 1fr;
+  gap: 1rem;
+  padding: 0.5rem;
 
-    &>div{
-        background-color:var(--color-light--1);
-        border-radius:2rem;
-        padding:2rem;
-    }
-
+  
+  @media (max-width: 960px) and (min-width: 425px) {
+    overflow-x: scroll;
+  }
 `
-
-
 
 const AppLayout = () => {
     return (
@@ -29,7 +25,7 @@ const AppLayout = () => {
             <Logo />
             <StyledHello />
             <Header />
-            <Outlet />
+                <Outlet />
         </StyledAppLayout>
     )
 }

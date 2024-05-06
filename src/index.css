@@ -4,10 +4,10 @@
   --color-purple-light: #624874;
   --color-purple-dark: #473256;
   --color-orange-font: #e25734;
-  --color-orange-light: #ffc6b2;
+  --color-orange-light: #ffcac0;
   --color-white-light: #f7f8f2;
-  --color-white-dark: #CBC6BE;
-  --color-light-font: #8E8F87;
+  --color-white-dark: #e5e0d8;
+  --color-light-font: #7e7f7c;
   --color-dark-font: #373737;
 }
 
@@ -22,3 +22,5 @@
 body {
   background-color: var(--color-white-light);
 }
+
+/*425*/

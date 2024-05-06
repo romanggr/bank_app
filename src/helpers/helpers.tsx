@@ -80,5 +80,35 @@ export function validatePassword(password: string) {
         password.length >= minLength;
 }
 
+export function formatTime(data: string) {
+    let time: string = "";
 
+    for (let i = 0; i < data.length; i++) {
+        if (i > 9) {
+            time += data[i];
+        }
+    }
+
+    return time
+}
+
+export function formatDays(inputDate: string): string {
+    let days: string = "";
+
+    for (let i = 0; i < 10; i++) {
+            days += inputDate[i];
+
+    }
+
+    const partsString: string[] = days.split('.');
+
+    const parts: number[] = partsString.map(part => Number(part));
+
+    const date = new Date(parts[2], parts[1] - 1, parts[0]);
+
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthName = monthNames[date.getMonth()];
+
+    return parts[0] + ' ' + monthName + ' ' + parts[2];
+}
 

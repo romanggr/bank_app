@@ -7,7 +7,7 @@ interface LogoSize {
 
 const StyledLogo = styled.div<LogoSize>`
   display: flex;
-  align-items: center;
+  align-items: center !important;
   background-color: var(--color-purple-light);
   border-radius: 3rem;
   
@@ -66,16 +66,17 @@ const StyledLogo = styled.div<LogoSize>`
   
   ${props=>props.size === "small" && css`
     gap: 0.5rem;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
+    
 
     & > h2 {
       font-weight: 500;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: var(--color-white-light);
     }
 
     & > svg {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       fill: var(--color-white-light);
     }
   `}
