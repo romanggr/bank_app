@@ -7,8 +7,8 @@ export function replaceAll(input: string, search: string, replacement: string): 
 }
 
 export function numberForCard(number: number) {
-    let string = number.toString();
-    let res: string[] = [];
+    const string = number.toString();
+    const res: string[] = [];
     for (let i = 0; i < string.length; i++) {
         if (i % 4 === 0) {
             res.push(" ")
